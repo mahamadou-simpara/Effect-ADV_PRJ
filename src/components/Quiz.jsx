@@ -1,6 +1,7 @@
 import { useState } from "react";
 import QUESTIONS from "../questions";
 import QuizConplete from "../assets/quiz-complete.png";
+import Progress from "./Progress";
 
 export default function Quiz() {
   const [userAnswers, setUserAnswers] = useState([]);
@@ -14,7 +15,7 @@ export default function Quiz() {
     return (
       <div id="summary">
         <img src={QuizConplete} alt="logo quiz-complete" />
-        <h2>Quiz Complete</h2>
+        <h2>Quiz Completed</h2>
       </div>
     );
   }
@@ -33,6 +34,7 @@ export default function Quiz() {
   return (
     <div id="quiz">
       <div id="question">
+        <Progress timeout={10000} onTimeOut={() => handleSelectAnswer(null)} />
         <h2>{QUESTIONS[activeQuestionIndex].text}</h2>
         <ul id="answers">
           {shuffledAnswers.map((answer) => (
