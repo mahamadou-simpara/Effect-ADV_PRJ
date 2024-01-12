@@ -5,14 +5,19 @@ export default function Progress({ timeout, onTimeOut }) {
 
   useEffect(() => {
     console.log('SETTING TIMEOUT');
-    setTimeout(onTimeOut, timeout);
-  }, [timeout]);
+    const timer = setTimeout(onTimeOut, timeout);
+
+    return () => {clearTimeout(timer)};
+
+  }, [timeout, onTimeOut]);
 
   useEffect(() => {
     console.log('SETTING INTERVAL');
-    setInterval(() => {
+    const interval = setInterval(() => {
       setRemainingTime((prevTime) => prevTime - 100);
     }, 100);
+
+    return () => {clearInterval(interval)};
   }, []);
 
   return <progress id="question-time" max={timeout} value={remainingTime} />;
