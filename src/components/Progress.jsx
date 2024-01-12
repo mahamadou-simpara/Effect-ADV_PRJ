@@ -4,7 +4,6 @@ export default function Progress({ timeout, onTimeOut }) {
   const [remainingTime, setRemainingTime] = useState(timeout);
 
   useEffect(() => {
-    console.log('SETTING TIMEOUT');
     const timer = setTimeout(onTimeOut, timeout);
 
     return () => {clearTimeout(timer)};
@@ -12,7 +11,6 @@ export default function Progress({ timeout, onTimeOut }) {
   }, [timeout, onTimeOut]);
 
   useEffect(() => {
-    console.log('SETTING INTERVAL');
     const interval = setInterval(() => {
       setRemainingTime((prevTime) => prevTime - 100);
     }, 100);
