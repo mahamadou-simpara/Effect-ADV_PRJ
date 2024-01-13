@@ -8,6 +8,8 @@ export default function Answers({answers, selectedAnswer, answerState, onSelect}
     shuffledAnswers.current = [...answers];
     shuffledAnswers.current.sort(() => Math.random() - 0.5);
   }
+
+
   return (
     <ul id="answers">
       {shuffledAnswers.current.map((answer) => {
