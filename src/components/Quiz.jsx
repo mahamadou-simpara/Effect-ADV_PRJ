@@ -23,6 +23,7 @@ export default function Quiz() {
     handleSelectAnswer(null);
   }, [handleSelectAnswer]);
 
+
   if (quizIsComplete) {
     return (
       <div id="summary">

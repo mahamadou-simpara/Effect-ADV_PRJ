@@ -9,6 +9,16 @@ export default function Question({ index, onSkip, onHandleSelectedAnswer }) {
     isCorrect: null,
   });
 
+  let timer = 10000;
+
+  if (answer.selectedAnswer) {
+    timer = 1000;
+  }
+
+  if (answer.isCorrect !== null) {
+    timer = 2000;
+  }
+
   const handleSelectAnswer = (answer) => {
     setAnswer({
       selectedAnswer: answer,
@@ -36,7 +46,12 @@ export default function Question({ index, onSkip, onHandleSelectedAnswer }) {
 
   return (
     <div id="question">
-      <Progress timeout={10000} onTimeOut={onSkip} />
+      <Progress
+        key={timer}
+        timeout={timer}
+        onTimeOut={answer.selectedAnswer === "" ? onSkip : null}
+        mode={answerState}
+      />
       <h2>{questions[index].text}</h2>
       <Answers
         answers={questions[index].answers}
